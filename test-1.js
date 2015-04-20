@@ -8,10 +8,15 @@ describe('Array', function(){
 	var arr;
 	var str;
 	var isPrime;
+	var err;
+	var fn;
 
 	beforeEach(function(){
+	
 		arr = [1,2,3];
+	
 		str = "Kavit";
+ 	
  		isPrime = function (num){
 			
 			if(num === 2){
@@ -30,6 +35,13 @@ describe('Array', function(){
 
 		return true;
 	};
+	
+		err = new ReferenceError('This is a bad function');
+		
+		fn = function(){ 
+			throw err;
+		}
+	
 	});
 
 	afterEach(function(){
@@ -51,5 +63,9 @@ describe('Array', function(){
       assert.equal(-1, arr.indexOf(5));
       assert.equal(-1, arr.indexOf(0));
     })
+  })
+
+  it('should throw an exception', function(){
+  	expect(fn).to.throw(ReferenceError);
   })
 })
